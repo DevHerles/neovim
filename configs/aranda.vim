@@ -105,11 +105,11 @@ endfunction
 
 highlight BadWhitespace ctermbg=red guibg=default
 
-autocmd InsertEnter * highlight CursorLine guibg=#000050 guifg=fg
-autocmd InsertLeave * highlight CursorLine guibg=#004000 guifg=fg
+autocmd InsertEnter * highlight CursorLine guibg=#000000 guifg=fg
+autocmd InsertLeave * highlight CursorLine guibg=#000000 guifg=fg
 
-autocmd InsertEnter * highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
-autocmd InsertLeave * highlight CursorColumn ctermfg=Black ctermbg=Yellow cterm=bold guifg=Black guibg=yellow gui=NONE
+autocmd InsertEnter * highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=black gui=bold
+autocmd InsertLeave * highlight CursorColumn ctermfg=Black ctermbg=Yellow cterm=bold guifg=Black guibg=black gui=NONE
 
 " }}}
 
