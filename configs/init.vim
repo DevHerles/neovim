@@ -144,5 +144,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " }}}
 
+" TMUX {{{
+
+Plug 'christoomey/vim-tmux-navigator'
+
+" }}}
+
 call plug#end() "---------------------------------------- End of Vim-Plug define
 
