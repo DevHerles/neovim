@@ -1,120 +1,318 @@
-#  _	 __
-# | | / /
-# | |/ / _	 _	___ ____
-# |		 \| | | |/ _ \_  /	Author: Kyoz
-# | |\	\ |_| | (_) / /		Github: github.com/banminkyoz
-# \_| \_/\__, |\___/___|	Email : banminkyoz@gmail.com
-#					__/ |
-#				 |___/
+# React & JSX
+snippet rrcc "React Redux Class Component" b
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import styles from './${2:$1}.css';
 
-#  DEFINING {{{
+class ${1:`!v expand('%:t:r')`} extends Component {
+	static propTypes = {
+		children: PropTypes.node,
+		className: PropTypes.string,
+		dispatch: PropTypes.func.isRequired,
+	};
 
-snippet f Function
-	function ${1:name}() {
-		${0}
+	constructor(props) {
+		super(props);
 	}
-snippet af Arrow function
-  (${1}) => {${2}}
-snippet rq Require
-	const ${1} = require('${0}');
 
-#  }}}
-
-# IMPORT {{{
-
-snippet ip Import
-	import { ${0} } from '${1:path}';
-snippet ipa Import all
-	import * as ${0} from '${1:path}';
-
-# }}}
-
-# CONDITIONS {{{
-
-snippet	if If statement
-	if (${1:condition}) {
-		${0}
+	render() {
+		return (
+			<div className={styles.base}>
+				$3
+			</div>
+		);
 	}
-snippet	ifelse If else statement
-	if (${1:condition}) {
-		${2}
-	} else {
-		${3}
+}
+
+function mapStateToProps(state) {
+	return {};
+}
+
+export default connect(mapStateToProps)($1);
+endsnippet
+
+snippet rcc "React Class Component" b
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import styles from './${2:$1}.css';
+
+class ${1:`!v expand('%:t:r')`} extends Component {
+	static propTypes = {
+		${2:children: PropTypes.node,
+		className: PropTypes.string,}
+	};
+
+	constructor(props) {
+		super(props);
 	}
-snippet	switch Perform different actions based on different conditions
-	switch(${1}) {
-		case valueOne:
-		  // Code block
-			break;
-		case valueTwo:
-		  // Code block
-			break;
+
+	render() {
+		return (
+			<${3:div} className={styles.base}>
+				$0
+			</$3>
+		);
+	}
+}
+
+export default $1;
+endsnippet
+
+snippet rfc "React Functional Component" b
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './${2:$1}.css';
+
+function ${1:`!v expand('%:t:r')`}({ $3 }) {
+	return (
+		<${5:div} className={styles.base}>
+			$0
+		</$5>
+	);
+}
+
+$1.defaultProps = {$4};
+
+$1.propTypes = {`!p
+props = t[3]
+
+if props:
+  snip >> 1
+  for prop in props.split(', '):
+    snip += prop + ': PropTypes.any,'
+`
+};
+
+export default $1;
+endsnippet
+
+snippet rsc "React Styled Component" b
+import styled from 'styled-components';
+
+const ${1:`!v expand('%:t:r')`} = styled.${2:div}\`
+	$3
+\`;
+
+export default $1;
+endsnippet
+
+snippet rsci "React Styled Component Interpolation" b
+import styled, { css } from 'styled-components';
+
+const ${1:`!v expand('%:t:r')`} = styled.${2:div}\`${props => css\`
+	${3:${props.$4 && \`
+		$5
+	\`}}
+\`}\`;
+
+export default $1;
+endsnippet
+
+snippet pp "Get Props"
+${props => props.${1}};
+endsnippet
+
+snippet cn "className"
+className="$1"
+endsnippet
+
+snippet dp "Default Props" b
+${1:`!v expand('%:t:r')`.}defaultProps = {
+	$2
+};
+endsnippet
+
+snippet set "Set State"
+this.setState({
+	${1}: ${2}
+});
+endsnippet
+
+snippet props "Get Property" i
+this.props.${1}
+endsnippet
+
+snippet state "Get State" i
+this.state.${1}
+endsnippet
+
+snippet ref "Ref" i
+ref={${1:ref} => { this.${2:name} = $1; }}
+endsnippet
+
+
+# Component Lifecycle
+snippet cwm "Component Will Mount" b
+componentWillMount() {
+	$1
+}
+endsnippet
+
+snippet cdm "Component Did Mount" b
+componentDidMount() {
+	$1
+}
+endsnippet
+
+snippet cwrp "Component Will Receive Props" b
+componentWillReceiveProps(nextProps) {
+	$1
+}
+endsnippet
+
+snippet scup "Should Component Update" b
+shouldComponentUpdate(nextProps, nextState) {
+	$1
+}
+endsnippet
+
+snippet cwup "Component Will Update" b
+componentWillUpdate(nextProps, nextState) {
+	$1
+}
+endsnippet
+
+snippet cdup "Component Did Update" b
+componentDidUpdate(prevProps, prevState) {
+	$1
+}
+endsnippet
+
+snippet cwu "Component Will Unmount" b
+componentWillUnmount() {
+	$1
+}
+endsnippet
+
+snippet ren "Render"
+render() {
+	return ${1:(
+		${2:<div>${3}</div>}
+	);}
+}
+endsnippet
+
+
+# PropTypes
+snippet pt "PropTypes Definition" b
+${1:`!v expand('%:t:r')`.}propTypes = {
+	${2:className}: ${3:PropTypes.string},
+};
+endsnippet
+
+snippet  pt.a "PropTypes Array" w
+PropTypes.array${1:,}
+endsnippet
+
+snippet   pt.b "PropTypes Boolean" w
+PropTypes.bool${1:,}
+endsnippet
+
+snippet pt.f "PropTypes Function" w
+PropTypes.func${1:,}
+endsnippet
+
+snippet pt.n "PropTypes Number" w
+PropTypes.number${1:,}
+endsnippet
+
+snippet pt.o "PropTypes Object" w
+PropTypes.object${1:,}
+endsnippet
+
+snippet pt.s "PropType String" w
+PropTypes.string${1:,}
+endsnippet
+
+snippet pt.no "PropTypes Node" w
+PropTypes.node${1:,}
+endsnippet
+
+snippet pt.e "PropTypes Element" w
+PropTypes.element${1:,}
+endsnippet
+
+snippet pt.io "PropTypes instanceOf" w
+PropTypes.instanceOf(${2:PropTypes.string})${1:,}
+endsnippet
+
+snippet pt.one "PropTypes oneOf" w
+PropTypes.oneOf(['$2'$3])${1:,}
+endsnippet
+
+snippet pt.onet "PropTypes oneOfType" w
+PropTypes.oneOfType([
+	$2
+])${1:,}
+endsnippet
+
+snippet pt.ao "PropTypes arrayOf" w
+PropTypes.arrayOf(${2:PropTypes.string})${1:,}
+endsnippet
+
+snippet pt.oo "PropTypes objectOf" w
+PropTypes.objectOf(${2:PropTypes.string})${1:,}
+endsnippet
+
+snippet pt.sh "PropTyes Shape" w
+PropTypes.shape({
+	$2
+})${1:,}
+endsnippet
+
+snippet ir "isRequired" w
+isRequired,
+endsnippet
+
+snippet us.s "useState" w
+const [$1, set${1/\w+\s*/\u$0/g}] = useState(${3:''})${0:;}
+endsnippet
+
+snippet us.e "useEffect" w
+useEffect(() => {
+  $1
+})${0:;}
+endsnippet
+
+snippet us.er "useEffect with return" w
+useEffect(() => {
+  $1
+	return () => {
+    $2
+	};
+})${0:;}
+endsnippet
+
+snippet us.c "useContext" w
+const $1 = useContext($2)${0:;}
+endsnippet
+
+snippet us.r "useReducer" w
+const [$1, dispatch] = useReducer($1Reducer, ${2:${VISUAL:initialState}})
+const $1Reducer = (state, action) => {
+	switch (action.type) {
 		default:
-			${0}
+			return state;
 	}
+}${0:;}
+endsnippet
 
-# }}}
+snippet us.cb "useCallback" w
+useCallback(
+	() => {
+		$1
+	},
+	[$2],
+)${0:;}
+endsnippet
 
-# ITERABLE {{{
+snippet us.m "useMemo" w
+const $1 = useMemo(() => {
+	$2
+}, [$3])${0:;}
+endsnippet
 
-snippet for Iterating over iterable objects by index
-	for (let i = 0; i < ${1:array}.length; i++) {
-		${2:// Content}
-	}
-snippet	forr Iterating over iterable objects by index (Reverse)
-	for (let i =	${1:array}.length - 1; i >= 0; i--) {
-		${2:// Content}
-	}
-snippet forin Iterating over property values of iterable objects
-	for (const item in ${1}) {
-		${2:// Content}
-	}
-snippet forof Iterating over property names of iterable objects
-	for (const item of ${1}) {
-		${2:// Content}
-	}
-
-# }}}
-
-# GET DOM ELEMENT {{{
-
-snippet getAll Find HTML element by CSS selectors
-	document.querySelectorAll('${1:selector}');
-snippet	getId Find HTML element by id
-	document.getElementById('${1:id}');
-snippet	getClass Find HTML element by class name
-	document.getElementsByClassName('${1:className}');
-snippet	getTag Find HTML element by tag name
-	document.getElementByTagName('${1:tagName}');
-
-# }}}
-
-# CONSOLE LOG {{{
-
-snippet	log Log to console
-	console.log(${0});
-snippet	loge Log error to console
-	console.error(${0});
-snippet	logt Log tabular data as a table
-	console.table(${0});
-snippet	logc Log with color
-	console.log('%c ${0} ', 'color: #ff9400');
-snippet	logbg Log with background
-	console.log('%c ${0} ', 'background: #222; color: #bada55');
-
-# }}}
-
-# INTERVAL & TIMEOUT {{{
-
-snippet	timeout Executes the given function after the specified delay miliseconds
-	setTimeout(() => {
-		${2:// Content}
-	}, ${1:miliseconds})
-
-snippet	interval Executes the given function after at specified intervals 
-	setInterval(() => {
-		${2:// Content}
-	}, ${1:miliseconds})
-
-# }}}
-
+snippet us.rf "useRef" w
+const $1 = useRef($2)${0:;}
+endsnippet
