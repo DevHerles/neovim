@@ -150,5 +150,10 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " }}}
 
+" ACK {{{
+
+Plug 'mileszs/ack.vim' " ------------Don't forget: sudo apt-get install ack-grep
+
+" }}}
 call plug#end() "---------------------------------------- End of Vim-Plug define
 

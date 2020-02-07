@@ -120,6 +120,7 @@ let g:ack_autofold_results = 0
 let g:ackhighlight = 1
 
 cnoreabbrev Ack Ack!
+cnoreabbrev ack Ack!
 nnoremap <Leader>a :Ack!<Space><C-R><C-W>
 nnoremap <Leader>ff 0yi":Ack!<Space>'<C-R>" = fields' --py<CR> " ----Where the field was defined
 nnoremap <Leader>fm 0yi":Ack!<Space>"def <C-R>"" --py<CR> " ---------Where de method was defined
