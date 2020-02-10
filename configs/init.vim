@@ -155,5 +155,13 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim' " ------------Don't forget: sudo apt-get install ack-grep
 
 " }}}
+" WHITESPACE {{{
+
+Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace characters
+
+" }}}
+"
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 call plug#end() "---------------------------------------- End of Vim-Plug define
 

@@ -165,7 +165,8 @@ endif
 
 " RANGER {{{
 
-noremap <Leader>t :RangerCurrentDirectory<CR> "------------------- Ranger Toggle
+noremap <Leader>t :RangerCurrentDirectory<CR>
+noremap <Leader>f :FZF<CR>
 
 " }}}
 
