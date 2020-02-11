@@ -155,13 +155,31 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim' " ------------Don't forget: sudo apt-get install ack-grep
 
 " }}}
+
 " WHITESPACE {{{
 
 Plug 'ntpeters/vim-better-whitespace' " Highlight trailing whitespace characters
 
 " }}}
-"
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" SIGNIFY {{{
+
+if has('nvim') || has('patch-8.0.902')
+  Plug 'mhinz/vim-signify' " ---indicate added, modified and removed lines (VCS)
+else
+  Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+endif
+
+" }}}
+Plug 'tomasiser/vim-code-dark'
+
+" NERD Commenter {{{
+
+Plug 'preservim/nerdcommenter' " -----------------Comment functions so powerfull
+
+" }}}
 
 call plug#end() "---------------------------------------- End of Vim-Plug define
 
